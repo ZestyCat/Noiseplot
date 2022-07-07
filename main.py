@@ -21,6 +21,7 @@ def main():
             self.sv_nm     = tk.StringVar()
             self.ac        = tk.StringVar()
             self.ac_mem    = tk.StringVar() # Last aircraft value for memory
+            self.units_mem = tk.StringVar() # Last set of units for memory
             self.pwr       = tk.StringVar()
             self.pwr_2     = tk.StringVar()
             self.desc      = tk.StringVar()
@@ -231,11 +232,12 @@ def main():
                 self.eng.set(info["engine"])
                 self.pwr_unit["values"] = units
 
-                if self.ac.get() != self.ac_mem.get(): # If the aircraft changes, update the units.
+                if self.ac.get() != self.ac_mem.get() or self.units_mem.get() != units: # If the aircraft or units list changes, update the units.
                     self.units.set(units[0])
-                else:
+                else: # Do not reset units if the aircraft does not change
                     pass
                 self.ac_mem.set(self.ac.get()) # Add the current aircraft value to memory
+                self.units_mem.set(units)
                 
                 which_units = units.index(self.units.get()) + 1
                 op = "FLIGHT" if self.op_type.get() == "1" else "STATIC" 
@@ -246,9 +248,10 @@ def main():
                 self.pwr.set("")
                 self.pwr_2.set("")
             except:
+                print("Could not set info for current parameters")
                 pass
                 
-        def fixed_or_variable(self, event):
+        def fixed_or_variable(self, event = None):
             fixed_vals = [str(float(v)) for v in self.pwr_ent["values"]]
             pwr = str(float(self.pwr.get())) if fn.is_number(self.pwr.get()) else None
             pwr_2 = str(float(self.pwr_2.get())) if fn.is_number(self.pwr_2.get()) else None

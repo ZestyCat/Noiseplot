@@ -1,5 +1,42 @@
-    FOR ACC= M62201 AND OPC= 60
-    POWER SETTING UNITS IN THE STATIC NOISE DATABASE DO NOT MATCH UNITS IN THE SETUP FILE
-    UNITS FROM STATIC NOISE DATABASE: %QQBPA    
-    UNITS FROM THE SETUP FILE: %Q-BPA    
-    ALL DATA FOR THIS ACC DELETED FROM THIS JOB.
+          SUMMARY OF I/O FOR THE  CH-53E              
+
+          PROGRAM:  OMEGA 11.5
+          AIRCRAFT CODE: M62201
+          PROFILE VERSION CODE: W
+          DATE:            
+          DELTA N (OR DELN)=  0.00 DB
+
+
+          ***************************** INPUT DATA *****************************
+           DATADECK       INTERP    POWER           POWER DESCRIPTION
+             NAME    OPC   FLAG    SETTING
+          M6220160F   60     F     7.00 %QQBPA      GND IDLE            
+          M6220162F   62     F    75.00 %QQBPA      IGE LITE            
+          M6220164F   64     F    85.00 %QQBPA      OGE LITE            
+          M6220166F   66     F    21.00 %QQBPA      GND MAX             
+
+           DATADECK    ------------ NOISE SOURCE/SUBJECT ------------  DATE OF
+             NAME      PART 1                  PART 2                 NORM. RUN
+          M6220160F    CH-53E                  T64-GE-416A           22 JAN 1996
+          M6220162F    CH-53E                  T64-GE-416A           22 JAN 1996
+          M6220164F    CH-53E                  T64-GE-416A           22 JAN 1996
+          M6220166F    CH-53E                  T64-GE-416A           22 JAN 1996
+
+
+          **************************** OUTPUT DATA *****************************
+          MEASURES COMPUTED:    PNLT(P)--YES    AL(A)--YES    ALT(T)--YES
+          PROFILE DATA FOR ALL ANGLES WRITTEN TO FILE *TAPE2*
+          PROFILE DATA COMPUTED WITH AND WITHOUT EXCESS SOUND ATTENUATION.
+          METEOROLOGY:  TEMP      =    59 F
+                        BAR PRESS = 29.92 IN HG
+                        REL HUMID =    70 %
+
+           PROFILE        POWER         NORMALIZED DATADECKS  POWER DESCRIPTION
+             ID          SETTING        FIRST      SECOND
+          RM6220100    85.00 %QQBPA     M6220164F             OGE LITE            
+
+
+          ************************ GENERAL INFORMATION *************************
+          OPC --- OPERATION POWER CODE
+          INTERPOLATION FLAG = F FOR FIXED --- AFTERBURNER, WET OR WITH JETS
+                             = V FOR VARIABLE --- LINEAR INTERPOLATION
