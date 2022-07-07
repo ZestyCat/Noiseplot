@@ -61,16 +61,16 @@ def main():
             # Make frame
             self.input_frame  = tk.Frame(highlightthickness = 1)
             self.fig_frame    = tk.Frame(highlightbackground = "black", highlightthickness = 1, bg = "darkgrey")
-            self.param_frame     = tk.Frame(self.input_frame)
+            self.param_frame     = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 1,)
             self.button_frame = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 0)
             self.img_frame    = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 0, bg = "darkgrey")
             self.radials_frame = tk.Frame(self.param_frame)
-            self.ambient_controls = tk.Frame(self.input_frame)
-            self.static_controls = tk.Frame(self.input_frame)
+            self.ambient_controls = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 1,)
+            self.static_controls = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 1,)
 
             # Make widgets
             self.aeso_logo  = tk.Label(self.img_frame, image = self.logo)
-            self.operation_lab = tk.Label(self.param_frame, text = "Aircraft operation:")
+            self.operation_lab = tk.Label(self.param_frame, text = "Aircraft operation:", font="Verdana 12 underline")
             self.ac_lab     = tk.Label(self.param_frame, text = "Select aircraft:")
             self.ac_drp     = ttk.Combobox(self.param_frame, textvariable = self.ac, width = 20)
             self.ac_drp.bind('<<ComboboxSelected>>', self.set_info)
@@ -92,7 +92,7 @@ def main():
                     value = 1, command = self.toggle_static, text = "Flyover")
             self.op_type_2 = tk.Radiobutton(self.radials_frame, variable = self.op_type, 
                     value = 2, command = self.toggle_static, text = "Static")
-            self.ambient_lab = tk.Label(self.ambient_controls, text = "Ambient conditions:")
+            self.ambient_lab = tk.Label(self.ambient_controls, text = "Ambient conditions:", font="Verdana 12 underline")
             self.temp_lab   = tk.Label(self.ambient_controls, text = "Air temperature:")
             self.temp_ent   = tk.Entry(self.ambient_controls, width = 20)
             self.temp_unit  = tk.Label(self.ambient_controls, text = "degrees F")
@@ -103,9 +103,9 @@ def main():
             self.rh_pct_ent = tk.Entry(self.ambient_controls, width = 20)
             self.rh_pct_unit= tk.Label(self.ambient_controls, text = "%")
             self.speed_lab  = tk.Label(self.param_frame, text = "Aircraft speed:")
-            self.speed_ent  = tk.Entry(self.param_frame, width = 23)
+            self.speed_ent  = tk.Entry(self.param_frame, width = 11)
             self.speed_unit = tk.Label(self.param_frame, text = "knots")
-            self.static_lab = tk.Label(self.static_controls, text = "Static plot controls:")
+            self.static_lab = tk.Label(self.static_controls, text = "Static plot controls:", font="Verdana 12 underline")
             self.extent_lab = tk.Label(self.static_controls, text = "Extent:")
             self.extent_ent = tk.Entry(self.static_controls, width = 20)
             self.extent_unit= tk.Label(self.static_controls, text = "feet")
@@ -160,8 +160,8 @@ def main():
             self.rh_pct_ent.grid(row  = 7, column = 1, sticky = "W", columnspan = 3)
             self.rh_pct_unit.grid(row = 7, column = 4, sticky = "W")
             self.speed_lab.grid(row   = 8, column = 0, sticky = "E")
-            self.speed_ent.grid(row   = 8, column = 1, sticky = "W", columnspan = 2)
-            self.speed_unit.grid(row  = 8, column = 3, sticky = "W")
+            self.speed_ent.grid(row   = 8, column = 1, sticky = "W")
+            self.speed_unit.grid(row  = 8, column = 2, sticky = "W")
             self.desc_lab.grid(row    = 4, column = 0, sticky = "E")
             self.desc_ent.grid(row    = 4, column = 1, sticky = "W", columnspan = 3)
             self.op_type_lab.grid(row = 1, column = 0, sticky = "E")
@@ -185,11 +185,11 @@ def main():
             self.input_frame.grid(row = 0, column = 0, sticky = "WE") 
             self.fig_frame.grid(row   = 3, column = 0)
             self.param_frame.grid(row    = 0, column = 0, pady = (10, 3), padx = (10, 3), columnspan = 1, sticky = "W")
-            self.radials_frame.grid(row= 1, column = 0, pady = (3, 3), padx = (10, 10), columnspan = 4, sticky = "WE")
+            self.radials_frame.grid(row= 1, column = 0, columnspan = 3, sticky = "E")
             self.button_frame.grid(row= 4, column = 0, pady = (3, 10), padx = (3, 10), columnspan = 2, sticky = "WE")
             self.img_frame.grid(row   = 0, column = 1, padx = (0, 10), rowspan = 2, sticky = "NE")
-            self.static_controls.grid(row = 2, column = 0, sticky = "W")
-            self.ambient_controls.grid(row = 1, column = 0, sticky = "W")
+            self.static_controls.grid(row = 2, pady = (10, 3), padx = (10, 3), column = 0, sticky = "W")
+            self.ambient_controls.grid(row = 1, pady = (10, 3), padx = (10, 3), column = 0, sticky = "W")
             
             self.toggle_static() # After the app has loaded, disable static options and populate drop-down.
 
@@ -249,11 +249,9 @@ def main():
                 pass
                 
         def fixed_or_variable(self, event):
-            print("doing function")
             fixed_vals = [str(float(v)) for v in self.pwr_ent["values"]]
             pwr = str(float(self.pwr.get())) if fn.is_number(self.pwr.get()) else None
             pwr_2 = str(float(self.pwr_2.get())) if fn.is_number(self.pwr_2.get()) else None
-            print(fixed_vals, pwr, pwr_2)
             if pwr in fixed_vals and pwr_2 is None: 
                 #pwr in fixed vals and pwr_2 blank. Interpolation should be fixed
                 self.interp.set(2)
@@ -303,7 +301,7 @@ def main():
                     self.df   = None if out is None else fn.read_o10("./omega/" + out)
                     self.df_2 = None if out_2 is None else fn.read_o10("./omega/" + out_2)
                 except:
-                    msg = "Variable interpolation is not available for this aircraft. In other words, Omega10 will not allow you to enter power settings between those available in the input database. Please choose a power setting from the drop-down menu and try again."
+                    msg = "Variable interpolation is not available for this aircraft. In other words, Omega10 will not allow you to enter power settings other than those available in the input database. Please choose a power setting from the drop-down menu and try again."
                     hdr = "Variable interpolation not available"
                     self.show_message(hdr, msg)
                     return
@@ -327,7 +325,7 @@ def main():
                 try:
                     df = fn.read_o11("./omega/" + out)
                 except:
-                    msg = "Variable interpolation is not available for this aircraft. In other words, Omega11 will not allow you to enter power settings between those available in the input database. Please choose a power setting from the drop-down menu and try again."
+                    msg = "Variable interpolation is not available for this aircraft. In other words, Omega11 will not allow you to enter power settings other than those available in the input database. Please choose a power setting from the drop-down menu and try again."
                     hdr = "Variable interpolation not available"
                     self.show_message(hdr, msg)
                     return
