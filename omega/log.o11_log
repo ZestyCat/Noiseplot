@@ -1,7 +1,7 @@
-          SUMMARY OF I/O FOR THE  CH-53E              
+          SUMMARY OF I/O FOR THE  A-3                 
 
           PROGRAM:  OMEGA 11.5
-          AIRCRAFT CODE: M62201
+          AIRCRAFT CODE: M00201
           PROFILE VERSION CODE: W
           DATE:            
           DELTA N (OR DELN)=  0.00 DB
@@ -10,17 +10,15 @@
           ***************************** INPUT DATA *****************************
            DATADECK       INTERP    POWER           POWER DESCRIPTION
              NAME    OPC   FLAG    SETTING
-          M6220160F   60     F     7.00 %QQBPA      GND IDLE            
-          M6220162F   62     F    75.00 %QQBPA      IGE LITE            
-          M6220164F   64     F    85.00 %QQBPA      OGE LITE            
-          M6220166F   66     F    21.00 %QQBPA      GND MAX             
+          M0020104V   04     V    97.00 % RPM       MIL PWR             
+          M0020113V   13     V    53.00 % RPM       IDLE                
+          M0020121V   21     V    70.00 % RPM       70 % RPM ENG RUNUP  
 
            DATADECK    ------------ NOISE SOURCE/SUBJECT ------------  DATE OF
              NAME      PART 1                  PART 2                 NORM. RUN
-          M6220160F    CH-53E                  T64-GE-416A           22 JAN 1996
-          M6220162F    CH-53E                  T64-GE-416A           22 JAN 1996
-          M6220164F    CH-53E                  T64-GE-416A           22 JAN 1996
-          M6220166F    CH-53E                  T64-GE-416A           22 JAN 1996
+          M0020104V    A-3                     J57-P-10              02 JUN 1976
+          M0020113V    A-3                     J57-P-10              02 JUN 1976
+          M0020121V    A-3                     J57-P-10              02 JUN 1976
 
 
           **************************** OUTPUT DATA *****************************
@@ -33,7 +31,7 @@
 
            PROFILE        POWER         NORMALIZED DATADECKS  POWER DESCRIPTION
              ID          SETTING        FIRST      SECOND
-          RM6220100    85.00 %QQBPA     M6220164F             OGE LITE            
+          RM0020100    90.00 % RPM      M0020121V  M0020104V
 
 
           ************************ GENERAL INFORMATION *************************
