@@ -43,7 +43,7 @@ def main():
             self.tabs_img = tk.PhotoImage(file="./img/tabs.png")
             self.drop_img = tk.PhotoImage(file="./img/drop.png")
             self.del_img = tk.PhotoImage(file="./img/del.png")
-            self.logo = tk.PhotoImage(file="./img/aeso_padded.png")
+            #self.logo = tk.PhotoImage(file="./img/aeso_padded.png")
 
             # Set variable defaults
             self.sv_nm.set("./noise_plot.png")
@@ -70,7 +70,7 @@ def main():
             self.static_controls = tk.Frame(self.input_frame, highlightbackground="black", highlightthickness=1, )
 
             # Make widgets
-            self.aeso_logo = tk.Label(self.img_frame, image=self.logo)
+            #self.aeso_logo = tk.Label(self.img_frame, image=self.logo)
             self.operation_lab = tk.Label(self.param_frame, text="Aircraft operation:", font="Verdana 12 underline")
             self.ac_lab = tk.Label(self.param_frame, text="Select aircraft:")
             self.ac_drp = ttk.Combobox(self.param_frame, textvariable=self.ac, width=20)
@@ -145,7 +145,7 @@ def main():
             self.operation_lab.grid(row=0, column=0, sticky="W")
             self.ac_drp.grid(row=2, column=1, sticky="W", columnspan=3)
             self.ac_lab.grid(row=2, column=0, sticky="E")
-            self.aeso_logo.grid(row=0, column=4, rowspan=5, sticky="SW")
+            #self.aeso_logo.grid(row=0, column=4, rowspan=5, sticky="SW")
             self.ambient_lab.grid(row=4, column=0, sticky="W")
             self.temp_lab.grid(row=5, column=0, sticky="E")
             self.temp_ent.grid(row=5, column=1, sticky="W", columnspan=3)
